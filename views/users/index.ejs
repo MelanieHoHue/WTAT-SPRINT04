@@ -1,18 +1,36 @@
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>ZipCode</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% users.forEach(user => { %>
-            <tr>
-                <td><%= user.fullName %></td>
-                <td><%= user.email %></td>
-                <td><%= user.zipCode %></td>
-            </tr>
-        <% }); %>
-    </tbody>
-</table>
+<div class="row">
+    <h1>Users</h1>
+    <hr>
+    <div class="col-sm-6">
+        <p>Create a user account:</p>
+        <form class="subscription-form" action="/adduser" method="post">
+            <input type="text" name="first" placeholder="Firstname">
+            <input type="text" name="last" placeholder="Lastname">
+            <input type="text" name="email" placeholder="Email">
+            <input type="text" name="password" placeholder="Password">
+            <input type="text" name="zipCode" placeholder="Zip Code" pattern="[0-9]{5}">
+            <input type="submit" name="submit">
+        </form>
+    </div>
+    <div class="col-sm-6">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>ZipCode</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(user => { %>
+                    <tr>
+                        <td><%= user.fullName %></td>
+                        <td><%= user.email %></td>
+                        <td><%= user.zipCode %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -1,8 +1,8 @@
 "use strict";
 
-const Subscriber = require("../models/subscriber");
+const Subscriber = require("../models/subscriber"),
 
-getAllSubscribers = (req, res) => {
+getAllSubscribers =  (req, res) => {
   Subscriber.find({})
     .exec()
     .then(subscribers => {
@@ -17,11 +17,11 @@ getAllSubscribers = (req, res) => {
     .then(() => {
       console.log("promise complete");
     });
-};
+},
 
 getSubscriptionPage = (req, res) => {
   res.render("contact");
-};
+},
 
 saveSubscriber = (req, res) => {
   let newSubscriber = new Subscriber({
