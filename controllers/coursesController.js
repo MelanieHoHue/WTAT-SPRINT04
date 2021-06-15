@@ -30,4 +30,4 @@ module.exports =  {
                 if (error) res.send(error);
             });
     }
-}
+};

@@ -50,7 +50,9 @@ app.get("/contact", subscribersController.getSubscriptionPage);
 app.post("/subscribe", subscribersController.saveSubscriber);
 
 app.get("/users", usersController.index, usersController.indexView);
-app.post("/adduser", usersController.saveUser);
+app.get("/users/new", usersController.new);
+app.post("/users/create", usersController.create, usersController.redirectView);
+app.get("/users/:id", usersController.show, usersController.showView);
 
 app.get("/courses", coursesController.index, coursesController.indexView);
 app.post("/addcourse", coursesController.saveCourses);

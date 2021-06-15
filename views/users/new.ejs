@@ -1,0 +1,17 @@
+<div class="col-sm-6 data-form">
+    <p>Create a new account:</p>
+    <form action="/users/create" method="POST">
+    <h2>Create a new user:</h2>
+    <input type="text" name="first" id="inputFirstName" placeholder="First" autofocus>
+    <br>
+    <input type="text" name="last" id="inputLastName" placeholder="Last">
+    <br>
+    <input type="password" name="password" id="inputPassword" placeholder="Password" required>
+    <br>
+    <input type="email" name="email" id="inputEmail" placeholder="Email address" required>
+    <br>
+    <input type="text" name="zipCode" id="inputZipCode" pattern="\d*" placeholder="Zip Code" required>
+    <br>
+    <button type="submit">Sign in</button>
+   </form>
+</div>
