@@ -49,7 +49,7 @@ app.get("/courses", homeController.showCourses);
 app.get("/contact", subscribersController.getSubscriptionPage);
 app.post("/subscribe", subscribersController.saveSubscriber);
 
-app.get("/users", usersController.index);
+app.get("/users", usersController.index, usersController.indexView);
 app.post("/adduser", usersController.saveUser);
 
 app.use(errorController.logErrors);
