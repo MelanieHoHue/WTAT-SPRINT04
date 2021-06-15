@@ -2,7 +2,7 @@
 
 const Subscriber = require("../models/subscriber");
 
-exports.getAllSubscribers = (req, res) => {
+getAllSubscribers = (req, res) => {
   Subscriber.find({})
     .exec()
     .then(subscribers => {
@@ -19,11 +19,11 @@ exports.getAllSubscribers = (req, res) => {
     });
 };
 
-exports.getSubscriptionPage = (req, res) => {
+getSubscriptionPage = (req, res) => {
   res.render("contact");
 };
 
-exports.saveSubscriber = (req, res) => {
+saveSubscriber = (req, res) => {
   let newSubscriber = new Subscriber({
     name: req.body.name,
     email: req.body.email,
@@ -38,3 +38,5 @@ exports.saveSubscriber = (req, res) => {
       if (error) res.send(error);
     });
 };
+
+module.exports = { getAllSubscribers, getSubscriptionPage, saveSubscriber };
