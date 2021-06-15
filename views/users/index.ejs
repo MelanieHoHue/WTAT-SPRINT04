@@ -7,6 +7,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>ZipCode</th>
+                <th>Edit</th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +20,11 @@
                     </td>
                     <td><%= user.email %></td>
                     <td><%= user.zipCode %></td>
+                    <td>
+                        <a href="<%= `/users/${user._id}/edit` %>">
+                            <button>Edit</button>
+                        </a>
+                    </td>
                 </tr>
             <% }); %>
         </tbody>
