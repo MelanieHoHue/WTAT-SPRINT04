@@ -8,7 +8,7 @@ module.exports = {
             next();
         })
         .catch(error => {
-            console.log(`Error fetchung users: ${error.message}`);
+            console.log(`Error fetching users: ${error.message}`);
             next(error);
         });
     },
