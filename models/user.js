@@ -1,7 +1,6 @@
 const mongoose = require("mongoose"),
     {Schema} = mongoose,
     Subscriber = require("./subscriber"),
-
     userSchema = new Schema({
         name: {
             first: {
@@ -36,6 +35,8 @@ const mongoose = require("mongoose"),
             type: Schema.Types.ObjectId,
             ref: "Subscriber"
         }
+    }, {
+        timestamps: true
     });
 
 userSchema.virtual("fullName").get(function() {

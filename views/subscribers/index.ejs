@@ -1,33 +1,31 @@
 <div class="row">
-    <h1>All users</h1>
+    <h1>Subrscribers</h1>
     <hr>
      <table class="table table-striped">
         <thead>
             <tr>
                 <th>Name</th>
                 <th>Email</th>
-                <th>ZipCode</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            <% users.forEach(user => { %>
+            <% subscribers.forEach(subscriber => { %>
                 <tr>
                     <td>
-                        <a href="<%= `/users/${user._id}` %>">
-                            <%= user.fullName %>
+                        <a href="<%= `/subscribers/${subscriber._id}` %>">
+                            <%= subscriber.name %>
                         </a>
                     </td>
-                    <td><%= user.email %></td>
-                    <td><%= user.zipCode %></td>
+                    <td><%= subscriber.email %></td>
                     <td>
-                        <a href="<%= `/users/${user._id}/edit` %>">
+                        <a href="<%= `/subscribers/${subscriber._id}/edit` %>">
                             <button>Edit</button>
                         </a>
                     </td>
                     <td>
-                        <a href="<%= `/users/${user._id}/delete?_method=DELETE` %>">
+                        <a href="<%= `/subrscribers/${subscriber._id}/delete?_method=DELETE` %>">
                             <button>Delete</button>
                         </a>
                     </td>

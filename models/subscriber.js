@@ -21,6 +21,8 @@ const mongoose = require("mongoose"),
       type: mongoose.Schema.Types.ObjectId,
       ref: "Course"
     }]
+  }, {
+    timestamps: true
   });
 
 subscriberSchema.methods.getInfo = function () {

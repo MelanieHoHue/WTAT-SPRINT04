@@ -51,14 +51,7 @@ app.use("/", router);
 router.get("/name", homeController.respondWithName);
 router.get("/items/:vegetable", homeController.sendReqParam);
 
-router.get("/subscribers", subscribersController.getAllSubscribers, (req, res, next) => {
-  res.render("subscribers", { subscribers: req.data });
-});
-
 router.get("/", homeController.index);
-
-router.get("/contact", subscribersController.getSubscriptionPage);
-router.post("/subscribe", subscribersController.saveSubscriber);
 
 router.get("/users", usersController.index, usersController.indexView);
 router.get("/users/new", usersController.new);
@@ -70,6 +63,14 @@ router.delete("/users/:id/delete", usersController.delete, usersController.redir
 
 router.get("/courses", coursesController.index, coursesController.indexView);
 router.post("/addcourse", coursesController.saveCourses);
+
+router.get("/subscribers", subscribersController.index, subscribersController.indexView);
+router.get("/subscribers/new", subscribersController.new);
+router.post("/subscribers/create", subscribersController.create, subscribersController.redirectView);
+router.get("/subscribers/:id", subscribersController.show, subscribersController.showView);
+router.get("/subscriber/:id/edit", subscribersController.edit);
+router.put("/subscriber/:id/update", subscribersController.update, subscribersController.redirectView);
+router.delete("/subscribers/:id/delete", subscribersController.delete, subscribersController.redirectView);
 
 app.use(errorController.logErrors);
 app.use(errorController.respondNoResourceFound);

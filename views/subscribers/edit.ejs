@@ -1,0 +1,15 @@
+<div class="col-sm-6 data-form">
+    <form action="<%= `/subscribers/${subscriber._id}/update?_method=PUT`%>" method="POST">
+    <h2>Subscribe!</h2>
+    <input type="text" name="name" id="inputName" placeholder="Name" autofocus
+    value="<%= subscriber.name %>">
+    <br>
+    <input type="email" name="email" id="inputEmail" placeholder="Email address"
+    required value="<%= subscriber.email %>">
+    <br>
+    <input type="text" name="zipCode" id="inputZipCode" pattern="\d*" placeholder="Zip Code"
+    required value="<%= subscriber.zipCode %>">
+    <br>
+    <button type="submit">Save</button>
+   </form>
+</div>
