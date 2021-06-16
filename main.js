@@ -2,20 +2,25 @@
 
 const express = require("express"),
   app = express(),
+  router = express.Router(),
   errorController = require("./controllers/errorController"),
   homeController = require("./controllers/homeController"),
   subscribersController = require("./controllers/subscribersController"),
   usersController = require("./controllers/usersController"),
   coursesController = require("./controllers/coursesController"),
   layouts = require("express-ejs-layouts"),
+  methodOverride = require("method-override"),
   mongoose = require("mongoose"),
   Subscriber = require("./models/subscriber");
 
 mongoose.Promise = global.Promise;
 
 mongoose.connect(
-  "mongodb://localhost:27017/recipe_db",
-  { useNewUrlParser: true }
+  "mongodb://localhost:27017/recipe_db", {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
+   }
 );
 mongoose.set("useCreateIndex", true);
 const db = mongoose.connection;
@@ -37,25 +42,33 @@ app.use(
 app.use(express.json());
 app.use(homeController.logRequestPaths);
 
-app.get("/name", homeController.respondWithName);
-app.get("/items/:vegetable", homeController.sendReqParam);
+router.use(methodOverride("_method", {
+  methods: ["POST", "GET"]
+}));
 
-app.get("/subscribers", subscribersController.getAllSubscribers, (req, res, next) => {
+app.use("/", router);
+
+router.get("/name", homeController.respondWithName);
+router.get("/items/:vegetable", homeController.sendReqParam);
+
+router.get("/subscribers", subscribersController.getAllSubscribers, (req, res, next) => {
   res.render("subscribers", { subscribers: req.data });
 });
 
-app.get("/", homeController.index);
+router.get("/", homeController.index);
 
-app.get("/contact", subscribersController.getSubscriptionPage);
-app.post("/subscribe", subscribersController.saveSubscriber);
+router.get("/contact", subscribersController.getSubscriptionPage);
+router.post("/subscribe", subscribersController.saveSubscriber);
 
-app.get("/users", usersController.index, usersController.indexView);
-app.get("/users/new", usersController.new);
-app.post("/users/create", usersController.create, usersController.redirectView);
-app.get("/users/:id", usersController.show, usersController.showView);
+router.get("/users", usersController.index, usersController.indexView);
+router.get("/users/new", usersController.new);
+router.post("/users/create", usersController.create, usersController.redirectView);
+router.get("/users/:id", usersController.show, usersController.showView);
+router.get("/users/:id/edit", usersController.edit);
+router.put("/users/:id/update", usersController.update, usersController.redirectView);
 
-app.get("/courses", coursesController.index, coursesController.indexView);
-app.post("/addcourse", coursesController.saveCourses);
+router.get("/courses", coursesController.index, coursesController.indexView);
+router.post("/addcourse", coursesController.saveCourses);
 
 app.use(errorController.logErrors);
 app.use(errorController.respondNoResourceFound);

@@ -1,0 +1,21 @@
+<div class="col-sm-6 data-form">
+    <form action="<%=`/users/${user._id}/update?_method=PUT`%>" method="POST">
+    <h2>>Edit user: <%= user.fullName %></h2>
+    <input type="text" name="first" id="inputFirstName" placeholder="First"
+    autofocus value="<%= user.name.first %>">
+    <br>
+    <input type="text" name="last" id="inputLastName" placeholder="Last"
+    value="<%= user.name.last %>">
+    <br>
+    <input type="password" name="password" id="inputPassword" placeholder="Password"
+    required value="<%= user.password %>">
+    <br>
+    <input type="email" name="email" id="inputEmail" placeholder="Email address"
+    required value="<%= user.email %>">
+    <br>
+    <input type="text" name="zipCode" id="inputZipCode" pattern="\d*" placeholder="Zip Code"
+    required value="<%= user.zipCode %>">
+    <br>
+    <button type="submit">Update</button>
+   </form>
+</div>
